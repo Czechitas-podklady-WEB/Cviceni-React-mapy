@@ -16,6 +16,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
    1. Spusť `npm install react-map-gl`.
    1. Závislost vyžaduje drobnou úpravu ve `webpack.config.js`. Pod řádek s `test: /\.jsx?$/,` přidej `exclude: /node_modules/,`.
+   1. A před řádek `module: {` přidej `devtool: "source-map",`.
    1. Pokud máš puštěný vývojový server (`npm start`), ukonči ho a pusť znovu. Změna v konfiguračním souboru se jinak neprojeví.
 
 1. Vytvoř v `src` složku `components` a v ní přichystej komponentu `Mapa`.
