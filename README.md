@@ -77,7 +77,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
       mapStyle="mapbox://styles/mapbox/outdoors-v11"
       ```
 
-1. Přidej na mapu marker, který bude značit polohu Czechitas na Václavském náměstí.
+1. Přidej na mapu Marker, který bude značit polohu Czechitas na Václavském náměstí.
 
    1. Z webu [iconmonstr.com](https://iconmonstr.com/location-1-svg/) stáhni ikonku špendlíku a ulož ji do složky `src/images` pod názvem `spendlik.svg`.
 
