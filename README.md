@@ -73,7 +73,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
    1. Vybraný styl aplikuj na tvou mapu. Třeba takto:
 
       ```
-      	mapStyle="mapbox://styles/mapbox/outdoors-v11"
+      mapStyle="mapbox://styles/mapbox/outdoors-v11"
       ```
 
 1. Přidej na mapu marker, který bude značit polohu Czechitas na Václavském náměstí.
