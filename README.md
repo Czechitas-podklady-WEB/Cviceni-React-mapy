@@ -295,3 +295,74 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 ## Bonus
 
 1. Navrhni a použij vlastní styl podkladové mapy pomocí [studio.mapbox.com](https://studio.mapbox.com/).
+
+1. Umožni uživateli přesouvat Marker kliknutím na mapu.
+
+   1. Stáhni si obrázek [kotvy](https://iconmonstr.com/anchor-7-svg/) a ulož ho do složky `src/images` s názvem `kotva.svg`.
+
+   1. Přidej do komponenty `Mapa` stav, který bude reprezentovat polohu kotvy.
+
+      ```js
+      const [polohaKotvy, setPolohaKotvy] = useState({
+      	latitude: 50.082027979423236,
+      	longitude: 14.426295971100695,
+      })
+      ```
+
+   1. Vykresli do mapy nový Marker s ikonou kotvy a polohou podle stavu `polohaKotvy`.
+
+      ```
+      <Marker {...polohaKotvy} offsetLeft={-25} offsetTop={-50}>
+      	<img src={kotvaUrl} width={50} height={50} alt="kotva" />
+      </Marker>
+      ```
+
+   1. Do `<ReactMapGL>` přidej poslichač události `onClick`, který bude přenastavovat stav `polohaKotvy`. Všimni si, že událost (`event`) má vlastnost `event.lngLat`, pole o dvou prvcích v pořadí `longitude`, `latitude`.
+
+      ```
+      onClick={(event) =>
+      	setPolohaKotvy({
+      		latitude: event.lngLat[1],
+      		longitude: event.lngLat[0],
+      	})
+      }
+      ```
+
+1. Umožni uživateli přesouvat kotvu tahem myši.
+
+   1. Protože obrázky mají na tah myši speciální chování, budeš ho muset potlačit stylem `pointer-events: none`. Ideálně by takový styl mohl být ve vlastním souboru `css`, ale pro teď si práci můžeš zjednodušit inline stylováním přímo v `jsx`.
+
+      ```
+      <img
+      	src={kotvaUrl}
+      	width={50}
+      	height={50}
+      	alt="kotva"
+      	style={{ pointerEvents: 'none' }}
+      />
+      ```
+
+   1. Nastav Markeru s kotvou vlastnou `draggable`.
+
+      ```
+      <Marker … draggable>
+      ```
+
+   1. Vyzkoušej si kotvu tahem myši na mapě přemístit. Všimni si, že po puštění tlačítka Marker vždy skočí do původní polohy.
+
+   1. Na událost `onDragEnd` ulož do `polohaKotvy` nové umístění.
+
+      ```
+      <Marker
+      	…
+      	draggable
+      	onDragEnd={(event) =>
+      		setPolohaKotvy({
+      			latitude: event.lngLat[1],
+      			longitude: event.lngLat[0],
+      		})
+      	}
+      >
+      ```
+
+   1. Nyní by kotva po přesunutí tahem myši měla zůstat na novém místě. Vyzkoušej si to. Hodnotu `polohaKotvy` můžeš na nějakém projektu případně využít pro zadávání polohy uživatelem při ukládání formuláře s mapou.
