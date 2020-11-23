@@ -65,7 +65,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
    1. Do vlastnosti `mapboxApiAccessToken` dosaď tvůj `Default public token` z [account.mapbox.com](https://account.mapbox.com/).
 
-   1. Vyzkoušej, že se ti mapa zobrazí a ukazuje Václavské námestí.
+   1. Vyzkoušej, že se ti mapa zobrazí a ukazuje Václavské náměstí.
 
 1. Vyzkoušej různé styly mapových podkladů.
 
