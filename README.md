@@ -81,7 +81,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
    1. Z webu [iconmonstr.com](https://iconmonstr.com/location-1-svg/) stáhni ikonku špendlíku a ulož ji do složky `src/images` pod názvem `spendlik.svg`.
 
-   1. Z webu [gps-coordinates.net](https://www.gps-coordinates.net/) zjisti souřadnice `latitude` a `longitude` (zeměpisnou šířku a délku). Adresu zjistíš třeba ze stránek [czechitas.cz](https://www.czechitas.cz/cs/kontakt). V sekci `Kontakt` je to `Korespondenční adresa Praha`. Na [gps-coordinates.net](https://www.gps-coordinates.net/) dávej pozor na to, že v Čr není jen jedno Václavských náměstí.
+   1. Z webu [gps-coordinates.net](https://www.gps-coordinates.net/) zjisti souřadnice `latitude` a `longitude` (zeměpisnou šířku a délku). Adresu zjistíš třeba ze stránek [czechitas.cz](https://www.czechitas.cz/cs/kontakt). V sekci `Kontakt` je to `Korespondenční adresa Praha`. Na [gps-coordinates.net](https://www.gps-coordinates.net/) dávej pozor na to, že v Čr není jen jedno Václavské náměstí.
 
    1. Přidej do komponenty `Mapa` import Markeru.
 
