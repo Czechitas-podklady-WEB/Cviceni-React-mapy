@@ -6,7 +6,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
 ## Zadání
 
-1. Vycházej z kódu [React starter](https://github.com/Czechitas-podklady-WEB/project-starter).
+1. Založ nový projekt pomocí [create-czechitas-app](https://www.npmjs.com/package/create-czechitas-app).
 
 1. Založ si účet na [mapbox.com](https://www.mapbox.com/).
 
