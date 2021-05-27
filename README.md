@@ -1,6 +1,6 @@
 # Cvičení: React mapy
 
-Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/get-started
+Dokumentace react-map-gl: [visgl.github.io/react-map-gl/docs](https://visgl.github.io/react-map-gl/docs/get-started/get-started)
 
 ![demo](zadani/demo.gif)
 
