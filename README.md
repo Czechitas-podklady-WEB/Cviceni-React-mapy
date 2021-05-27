@@ -8,16 +8,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
 1. Založ nový projekt pomocí [create-czechitas-app](https://www.npmjs.com/package/create-czechitas-app).
 
-1. Založ si účet na [mapbox.com](https://www.mapbox.com/).
-
-1. Po registraci se dostaneš na stránku s [přehledem tvého účtu](https://account.mapbox.com/). V levé dolní části uvidíš box `Access tokens` a šedý rámeček s `Default public token`. V pozdějším kroku ho budeš potřebovat.
-
-1. Nainstaluj závislost pro mapy.
-
-   1. Spusť `npm install react-map-gl`.
-   1. Závislost vyžaduje drobnou úpravu ve `webpack.config.js`. Pod řádek s `test: /\.jsx?$/,` přidej `exclude: /node_modules/,`.
-   1. A před řádek `module: {` přidej `devtool: "source-map",`.
-   1. Pokud máš puštěný vývojový server (`npm start`), ukonči ho a pusť znovu. Změna v konfiguračním souboru se jinak neprojeví.
+1. Nainstaluj závislost pro mapy přes příkaz `npm install react-map-gl@5`.
 
 1. Vytvoř v `src` složku `components` a v ní přichystej komponentu `Mapa`.
 
@@ -41,8 +32,8 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
       ```js
       const [viewport, setViewport] = useState({
-      	latitude: 50.082627979423236,
-      	longitude: 14.426295971100695,
+      	latitude: 50.087543262674856,
+      	longitude: 14.421045443793917,
       	zoom: 15,
       })
       ```
@@ -55,33 +46,47 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
       return (
       	<ReactMapGL
       		{...viewport}
+      		mapStyle={{}}
       		width="100%"
       		height={400}
       		onViewportChange={(nextViewport) => setViewport(nextViewport)}
-      		mapboxApiAccessToken="pk...."
       	></ReactMapGL>
       )
       ```
 
-   1. Do vlastnosti `mapboxApiAccessToken` dosaď tvůj `Default public token` z [account.mapbox.com](https://account.mapbox.com/).
+   1. Do vlastnosti `mapStyle` přidej objekt s nastavením pro podklady ze Seznamu.
 
-   1. Vyzkoušej, že se ti mapa zobrazí a ukazuje Václavské náměstí.
-
-1. Vyzkoušej různé styly mapových podkladů.
-
-   1. Na adrese s dokumentací Mapboxu [docs.mapbox.com/api/maps](https://docs.mapbox.com/api/maps/#mapbox-styles) si prohlídni ukázky různých předpřipravených stylů a jeden si vyber.
-
-   1. Vybraný styl aplikuj na tvou mapu. Třeba takto:
-
+      ```javascript
+      {
+         version: 8,
+         sources: {
+            'raster-tiles': {
+               type: 'raster',
+               tiles: ['https://mapserver.mapy.cz/base-m/{z}-{x}-{y}'],
+               tileSize: 256,
+               attribution:
+                  'Mapové podklady od <a target="_top" rel="noopener" href="https://mapy.cz/">Seznam.cz</a> a <a target="_top" rel="noopener" href="http://openstreetmap.org">OpenStreetMap</a>.',
+            },
+         },
+         layers: [
+            {
+               id: 'simple-tiles',
+               type: 'raster',
+               source: 'raster-tiles',
+               minzoom: 0,
+               maxzoom: 20,
+            },
+         ],
+      }
       ```
-      mapStyle="mapbox://styles/mapbox/outdoors-v11"
-      ```
 
-1. Přidej na mapu Marker, který bude značit polohu Czechitas na Václavském náměstí.
+   1. Vyzkoušej, že se ti mapa zobrazí a ukazuje Staroměstské náměstí v Praze.
 
-   1. Z webu [iconmonstr.com](https://iconmonstr.com/location-1-svg/) stáhni ikonku špendlíku a ulož ji do složky `src/images` pod názvem `spendlik.svg`.
+1. Najdi gps souřadnice nejbližší Czechitas pobočky a nastav je jako výchozí střed mapy. Adresu zjistíš třeba ze stránek [czechitas.cz](https://www.czechitas.cz/cs/kontakt). Z webu [gps-coordinates.net](https://www.gps-coordinates.net/) pak vytáhni konkrétní souřadnice `latitude` a `longitude` (zeměpisnou šířku a délku).
 
-   1. Z webu [gps-coordinates.net](https://www.gps-coordinates.net/) zjisti souřadnice `latitude` a `longitude` (zeměpisnou šířku a délku). Adresu zjistíš třeba ze stránek [czechitas.cz](https://www.czechitas.cz/cs/kontakt). V sekci `Kontakt` je to `Korespondenční adresa Praha`. Na [gps-coordinates.net](https://www.gps-coordinates.net/) dávej pozor na to, že v Čr není jen jedno Václavské náměstí.
+1. Přidej na mapu Marker, který bude značit polohu této pobočky.
+
+   1. Z webu [iconmonstr.com](https://iconmonstr.com/location-1-svg/) stáhni ikonku špendlíku a ulož ji do složky `src/img` pod názvem `spendlik.svg`.
 
    1. Přidej do komponenty `Mapa` import Markeru.
 
@@ -100,7 +105,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
    1. Místo textu `Czechitas` vlož do Markeru obrázek špendlíku.
 
       ```js
-      import spendlikUrl from '../images/spendlik.svg'
+      import spendlikUrl from '../img/spendlik.svg'
       ```
 
       ```
@@ -111,12 +116,12 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
 1. Označ Marker Popupem.
 
-   1. Přidej do importů `{ Popup }` z `react-map-gl`.
+   1. Doplň do importů `{ Popup }` z `react-map-gl`.
 
    1. Přidej Popup bublinu vedle Markeru.
 
-      ```
-      <Marker …>…</Marker>
+      ```jsx
+      <Marker></Marker>
       <Popup
       	latitude={50.0833715}
       	longitude={14.4252452}
@@ -124,6 +129,8 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
       	Czechitas
       </Popup>
       ```
+
+   1. Gps souřadnice dej stejné jako u Markeru.
 
    1. Popup má také vlastnost `offsetTop`. Nastav ji tak, aby bublina nepřekrývala špendlík, byla nad ním.
 
@@ -164,9 +171,9 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
       1. Dej mu `className="marker-button"`.
 
-      1. Vytvoř v `components` soubor `marker-button.css` a naimportuj ho.
+      1. Vytvoř v `components` soubor `marker-button.css`.
 
-      1. Přidej do něj styly.
+      1. Přidej do něj styly a soubor v komponentě naimportuj.
 
          ```css
          .marker-button {
@@ -181,13 +188,13 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
 1. Zobraz na mapě více Markerů.
 
-   1. Přidej do složky `src/images` obrázek [bagru](https://iconmonstr.com/construction-4-svg/) jako `bagr.svg` a [informační ikonky](https://iconmonstr.com/info-5-svg/) jako `info.svg`.
+   1. Přidej do složky `src/img` obrázek [bagru](https://iconmonstr.com/construction-4-svg/) jako `bagr.svg` a [informační ikonky](https://iconmonstr.com/info-5-svg/) jako `info.svg`.
 
    1. Importuj je v komponentě `Mapa`.
 
       ```js
-      import bagrUrl from '../images/bagr.svg'
-      import infoUrl from '../images/info.svg'
+      import bagrUrl from '../img/bagr.svg'
+      import infoUrl from '../img/info.svg'
       ```
 
    1. Přichystej si na začátku komponenty pole objektů.
@@ -221,7 +228,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
       ]
       ```
 
-   1. Představme si, že třeba ikonky bargu budou symbolizovat neprůchodná místa, kde se zrovna staví a ikonky informací budou místa s info stánky.
+   1. Představme si, že třeba ikonky bargu budou symbolizovat neprůchodná místa, kde se zrovna staví a ikonky informací budou místa s info stánky. Uprav gps souřadnice tak, aby odpovídali místům v okolí pobočky.
 
    1. Pomocí `mista.map` vykresli všechny nové špendlíky na mapě.
 
@@ -283,6 +290,10 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
       	top: 10px;
       	right: 10px;
       }
+
+      .ovladani > * {
+      	position: static !important;
+      }
       ```
 
 1. Přidej tlačítko pro zaměření aktuální polohy uživatele.
@@ -295,11 +306,15 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
 ## Bonus
 
-1. Navrhni a použij vlastní styl podkladové mapy pomocí [studio.mapbox.com](https://studio.mapbox.com/).
+1. Zkus z [mapy.cz](https://mapy.cz/) použít jiný maový podklad.
+
+   1. Může to být trochu detektivní práce. Na Seznam mapách si přepni zobrazení třeba na zeměpisné zobrazení. Koukni do vývojářských nástrojů, co se stahuje za obrázky.
+
+   1. Pravděpodobně najdeš nějakou adresu v podobě `https://mapserver.mapy.cz/zemepis-m/11-1106-696`, kde poslední tři čísla jsou parametry konkrétní dlaždice. Nahraď je za `{z}-{x}-{y}` a použij v prop `mapStyle`.
 
 1. Umožni uživateli přesouvat Marker kliknutím na mapu.
 
-   1. Stáhni si obrázek [kotvy](https://iconmonstr.com/anchor-7-svg/) a ulož ho do složky `src/images` s názvem `kotva.svg`.
+   1. Stáhni si obrázek [kotvy](https://iconmonstr.com/anchor-7-svg/) a ulož ho do složky `src/img` s názvem `kotva.svg`.
 
    1. Přidej do komponenty `Mapa` stav, který bude reprezentovat polohu kotvy.
 
@@ -310,6 +325,8 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
       })
       ```
 
+   1. Gps souřadnice opět uprav na něco v okolí.
+
    1. Vykresli do mapy nový Marker s ikonou kotvy a polohou podle stavu `polohaKotvy`.
 
       ```
@@ -318,7 +335,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
       </Marker>
       ```
 
-   1. Do `<ReactMapGL>` přidej poslichač události `onClick`, který bude přenastavovat stav `polohaKotvy`. Všimni si, že událost (`event`) má vlastnost `event.lngLat`, pole o dvou prvcích v pořadí `longitude`, `latitude`.
+   1. Do `<ReactMapGL>` přidej poslouchač události `onClick`, který bude přenastavovat stav `polohaKotvy`. Všimni si, že událost (`event`) má vlastnost `event.lngLat`, pole o dvou prvcích v pořadí `longitude`, `latitude`.
 
       ```
       onClick={(event) =>
