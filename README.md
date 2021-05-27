@@ -8,8 +8,6 @@ Dokumentace react-map-gl: [visgl.github.io/react-map-gl/docs](https://visgl.gith
 
 1. Založ nový projekt pomocí [create-czechitas-app](https://www.npmjs.com/package/create-czechitas-app).
 
-1. Nainstaluj závislost pro mapy přes příkaz `npm install react-map-gl@5`.
-
 1. Vytvoř v `src` složku `components` a v ní přichystej komponentu `Mapa`.
 
    ```jsx
@@ -23,6 +21,8 @@ Dokumentace react-map-gl: [visgl.github.io/react-map-gl/docs](https://visgl.gith
 1. Přidej mapu na stránku.
 
 1. Koukni do prohlížeče a zkontroluj, že se ti na stránce vypisuje text `Mapa`.
+
+1. Nainstaluj závislost pro mapy přes příkaz `npm install react-map-gl@5`.
 
 1. Mapbox vyžaduje import vlastních css. Přidej do komponenty `import 'mapbox-gl/dist/mapbox-gl.css'`.
 
