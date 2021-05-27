@@ -121,7 +121,7 @@ Dokumentace react-map-gl: [visgl.github.io/react-map-gl/docs](https://visgl.gith
    1. Přidej Popup bublinu vedle Markeru.
 
       ```jsx
-      <Marker></Marker>
+      <Marker>…</Marker>
       <Popup
       	latitude={50.0833715}
       	longitude={14.4252452}
