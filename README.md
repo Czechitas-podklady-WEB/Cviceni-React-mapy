@@ -258,7 +258,7 @@ Dokumentace react-map-gl: https://visgl.github.io/react-map-gl/docs/get-started/
 
       ```
       <button onClick={() => setBargrySkryty(!bargrySkryty)}>
-      	{bargrySkryty ? 'zobrazit' : 'skrýt'} bargy
+      	{bargrySkryty ? 'zobrazit' : 'skrýt'} bagry
       </button>
       ```
 
