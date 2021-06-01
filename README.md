@@ -46,7 +46,6 @@ Dokumentace react-map-gl: [visgl.github.io/react-map-gl/docs](https://visgl.gith
       return (
       	<ReactMapGL
       		{...viewport}
-      		mapStyle={{}}
       		width="100%"
       		height={400}
       		onViewportChange={(nextViewport) => setViewport(nextViewport)}
@@ -54,7 +53,7 @@ Dokumentace react-map-gl: [visgl.github.io/react-map-gl/docs](https://visgl.gith
       )
       ```
 
-   1. Do vlastnosti `mapStyle` přidej objekt s nastavením pro podklady ze Seznamu.
+   1. Komponentě `ReactMapGL` přidej `prop` `mapStyle` s následujícím objektem nastavujícím mapové podklady ze Seznam map.
 
       ```javascript
       {
