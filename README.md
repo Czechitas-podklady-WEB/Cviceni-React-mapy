@@ -38,9 +38,9 @@ Dokumentace react-map-gl: [visgl.github.io/react-map-gl/docs](https://visgl.gith
       })
       ```
 
-   1. Naimportuj `ReactMapGl` pomocí `import ReactMapGL from 'react-map-gl'`.
+   1. Naimportuj `ReactMapGL` pomocí `import ReactMapGL from 'react-map-gl'`.
 
-   1. Komponentu `ReactMapGl` vykresli.
+   1. Komponentu `ReactMapGL` vykresli.
 
       ```jsx
       return (
