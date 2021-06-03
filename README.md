@@ -73,7 +73,7 @@ Dokumentace react-map-gl: [visgl.github.io/react-map-gl/docs](https://visgl.gith
                type: 'raster',
                source: 'raster-tiles',
                minzoom: 0,
-               maxzoom: 20,
+               maxzoom: 18,
             },
          ],
       }
