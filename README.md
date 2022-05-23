@@ -305,7 +305,7 @@ Dokumentace react-map-gl: [visgl.github.io/react-map-gl/docs](https://visgl.gith
 
 ## Bonus
 
-1. Zkus z [mapy.cz](https://mapy.cz/) použít jiný maový podklad.
+1. Zkus z [mapy.cz](https://mapy.cz/) použít jiný mapový podklad.
 
    1. Může to být trochu detektivní práce. Na Seznam mapách si přepni zobrazení třeba na zeměpisné zobrazení. Koukni do vývojářských nástrojů, co se stahuje za obrázky.
 
